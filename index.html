@@ -1,45 +1,78 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Bulma!</title>
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
     <title>Movie Moodboard</title>
-  </head>
-  <body>
-    <section class="section">
-      <div class="container">
-        <h1 class="title">Hello World</h1>
-        <p class="subtitle">My first website with <strong>Bulma</strong>!</p>
-      </div>
-      <label for="Media">TV show or Movie:</label>
-      <select name="media-type" id="mv-tv">
-        <option value="movie">Movie</option>
-        <option value="tv-show">TV Show</option>
-      </select>
-      <label for="Genres">Choose your genre:</label>
-      <select name="genres-option" id="genres">
-        <option value="28">Action</option>
-        <option value="12">Adventure</option>
-        <option value="35">Comedy</option>
-        <option value="27">Horror</option>
-        <option value="10749">Romance</option>
-        <option value="18">Drama</option>
-        <option value="878">Sci-Fi</option>
-        <option value="99">Documentary</option>
-        <option value="9648">Mystery</option>
-      </select>
+</head>
+<body>
+
+    <!--Top "Hero" of the page-->
+    <section class="hero is-dark">
+        <div class="hero-body">
+            <div class="container" id="heroContainer">
+                <div class="titleHero">
+                    <h1 id="titleMoviemoodboard"></h1>
+                    <img id="" src="" alt=""  style="max-width: 100px; max-height: 100px;">
+                  </div>
+                  <h4 id="subHead">An app for finding movies!</h4>
+                    
+            </div>
+        </div>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/js/script.js"></script>
-  </body>
+    <!-- End of Top part of page-->
+    
+    <!--Search Section-->
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <!--Search box-->
+                    <div class="notification is-primary is-size-3">
+                        <form id="search-form">
+                            <label for="Media">TV show or Movie:</label>
+                    <select name="media-type" id="mv-tv">
+                      <option value="movie">Movie</option>
+                      <option value="tv-show">TV Show</option>
+                    </select>
+                    <label for="Genres">Choose your genre:</label>
+                    <select name="genres-option" id="genres">
+                      <option value="action">Action</option>
+                      <option value="adventure">Adventure</option>
+                      <option value="comedy">Comedy</option>
+                      <option value="horror">Horror</option>
+                      <option value="romance">Romance</option>
+                      <option value="drama">Drama</option>
+                      <option value="sci-fi">Sci-Fi</option>
+                      <option value="documentary">Documentary</option>
+                      <option value="mystery">Mystery</option>
+                    </select>
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Search for Recipe" id="search-field">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info" id="search-button">Search</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Search history-->
+                    <div class="notification has-background-grey-lighter" id="search-history">
+                        <label class="label">Search History</label>
+                        <p id='search-history-help'>Once you search for some movies, your queries will be saved here for easy access.</p>
+                        <ul id="search-history-list">
+                        </ul>
+                    </div>
+                </div>
+    </section>
+                
+                
+    <script src="./assets/js/script.js"></script>
+</body>
 </html>
