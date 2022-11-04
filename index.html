@@ -35,7 +35,23 @@
                     <!--Search box-->
                     <div class="notification is-primary is-size-3">
                         <form id="search-form">
-                            <label class="label">Movie Search</label>
+                            <label for="Media">TV show or Movie:</label>
+                    <select name="media-type" id="mv-tv">
+                      <option value="movie">Movie</option>
+                      <option value="tv-show">TV Show</option>
+                    </select>
+                    <label for="Genres">Choose your genre:</label>
+                    <select name="genres-option" id="genres">
+                      <option value="action">Action</option>
+                      <option value="adventure">Adventure</option>
+                      <option value="comedy">Comedy</option>
+                      <option value="horror">Horror</option>
+                      <option value="romance">Romance</option>
+                      <option value="drama">Drama</option>
+                      <option value="sci-fi">Sci-Fi</option>
+                      <option value="documentary">Documentary</option>
+                      <option value="mystery">Mystery</option>
+                    </select>
                             <div class="field has-addons">
                                 <div class="control">
                                     <input class="input" type="text" placeholder="Search for Recipe" id="search-field">
@@ -54,6 +70,7 @@
                         </ul>
                     </div>
                 </div>
+    </section>
                 
                 
     <script src="./assets/js/script.js"></script>
