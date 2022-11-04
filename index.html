@@ -1,21 +1,61 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  </head>
-  <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
-    </div>
-  </section>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
+    <title>Movie Moodboard</title>
+</head>
+<body>
+
+    <!--Top "Hero" of the page-->
+    <section class="hero is-dark">
+        <div class="hero-body">
+            <div class="container" id="heroContainer">
+                <div class="titleHero">
+                    <h1 id="titleMoviemoodboard"></h1>
+                    <img id="" src="" alt=""  style="max-width: 100px; max-height: 100px;">
+                  </div>
+                  <h4 id="subHead">An app for finding movies!</h4>
+                    
+            </div>
+        </div>
+    </section>
+    <!-- End of Top part of page-->
+    
+    <!--Search Section-->
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <!--Search box-->
+                    <div class="notification is-primary is-size-3">
+                        <form id="search-form">
+                            <label class="label">Movie Search</label>
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Search for Recipe" id="search-field">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info" id="search-button">Search</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Search history-->
+                    <div class="notification has-background-grey-lighter" id="search-history">
+                        <label class="label">Search History</label>
+                        <p id='search-history-help'>Once you search for some movies, your queries will be saved here for easy access.</p>
+                        <ul id="search-history-list">
+                        </ul>
+                    </div>
+                </div>
+                
+                
+    <script src="./assets/js/script.js"></script>
+</body>
 </html>
