@@ -1,5 +1,6 @@
 var genreInputVal = "";
 var searchButtonEl = $("#search-button");
+var genreListEl = $("#genres");
 
 var searchResults = [];
 
@@ -19,8 +20,8 @@ fetch(requestUrl)
     console.log(searchResults);
   });
 
-searchButtonEl.on("click", function (event) {
-  event.preventDefault();
-  genreInputVal = $("#genre-input").val();
-  console.log(genreInputVal);
+
+// checks value of the dropdown when clicked
+genreListEl.on("change", function () {
+  console.log($(this).val());
 });
