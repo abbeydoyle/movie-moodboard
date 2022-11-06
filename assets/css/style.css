@@ -1,3 +1,72 @@
+/* declare colors as variables */
+:root {
+
+      /* horror */
+      --maroon: #5c131b;
+      --rich-red: #6e1722;
+      --mold-green: #2c3a21;
+      --burnt-orange: #9b5506;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* comedy */
+      --yellow: #f4e626;
+      --red: #d71515;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* action */
+      --blue: #101597;
+      --red: #d71515;
+      --black: #000000;
+      --white: #ffffff;
+      
+      /* adventure */
+      --forest-green: #0c4402;
+      --gold: #b18605;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* romance */
+      --rich-red: #6e1722;
+      --light-pink: #d85ca7;
+      --dark-pink: #be1179;
+      --gold: #b18605;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* drama */
+      --rich-red: #6e1722;
+      --purple: #6e176c; 
+      --black: #000000;
+      --white: #ffffff;    
+
+      /* scifi */
+      --silver: #a5a5a5;
+      --ooze-green: #39d321;
+      --mold-green: #2c3a21;
+      --blue: #101597;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* documentary */
+      --blue: #101597;
+      --red: #d71515;
+      --brown: #733a01;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* mystery */
+      --mold-green: #2c3a21;
+      --navy: #12175c;
+      --brown: #733a01;
+      --black: #000000;
+      --white: #ffffff;
+
+
+}
+
+
 body {
       background-color: grey;
 }
