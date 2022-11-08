@@ -6,22 +6,28 @@ var genreInputVal = "";
 
 var searchResults = [];
 
-var requestUrl =
-  "https://api.themoviedb.org/3/discover/movie?api_key=da2cce0ba3658a8b3c115c3c7c8178e5&sort_by=populatiry.desc&primary_release_year=2022&original_language=en&poster_path=&with_genres=35";
+// ONLY MOVIE IS WORKING RIGHT NOW FOR API SEARCHES
+function searchApi(mediaInputVal, genreInputVal) {
+  var requestUrl =
+    "https://api.themoviedb.org/3/discover/" +
+    mediaInputVal +
+    "?with_genres=" +
+    genreInputVal +
+    "sort_by=populatiry.desc&primary_release_year=2022&original_language=en&api_key=da2cce0ba3658a8b3c115c3c7c8178e5";
 
-fetch(requestUrl)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-    console.log(data.results.length);
-    for (var i = 0; i < data.results.length; i++) {
-      searchResults.push(data.results[i]);
-    }
-    console.log(searchResults);
-  });
-
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      console.log(data.results.length);
+      for (var i = 0; i < data.results.length; i++) {
+        searchResults.push(data.results[i]);
+      }
+      console.log(searchResults);
+    });
+}
 
 // Event listener
 function handleSearch(event) {
@@ -31,6 +37,8 @@ function handleSearch(event) {
   genreInputVal = genreListEl.value;
   console.log("mediaInputVal: " + mediaInputVal);
   console.log("genreInputVal: " + genreInputVal);
+
+  searchApi(mediaInputVal, genreInputVal);
 }
 
 searchButtonEl.addEventListener("click", handleSearch);
