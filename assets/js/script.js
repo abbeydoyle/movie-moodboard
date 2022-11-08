@@ -1,5 +1,8 @@
+var searchButtonEl = document.querySelector("#search-button");
+var mediaTypeEl = document.querySelector("#mv-tv");
+var mediaInputVal = "";
+var genreListEl = document.querySelector("#genres");
 var genreInputVal = "";
-var searchButtonEl = $("#search-button");
 
 var searchResults = [];
 
@@ -19,8 +22,15 @@ fetch(requestUrl)
     console.log(searchResults);
   });
 
-searchButtonEl.on("click", function (event) {
+
+// Event listener
+function handleSearch(event) {
   event.preventDefault();
-  genreInputVal = $("#genre-input").val();
-  console.log(genreInputVal);
-});
+  console.log("Search Button Clicked!");
+  mediaInputVal = mediaTypeEl.value;
+  genreInputVal = genreListEl.value;
+  console.log("mediaInputVal: " + mediaInputVal);
+  console.log("genreInputVal: " + genreInputVal);
+}
+
+searchButtonEl.addEventListener("click", handleSearch);
