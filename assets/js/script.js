@@ -7,7 +7,6 @@ var genreInputVal = "";
 
 var searchResults = [];
 
-// ONLY MOVIE IS WORKING RIGHT NOW FOR API SEARCHES
 function searchApi(mediaInputVal, genreInputVal) {
   var requestUrl =
     "https://api.themoviedb.org/3/discover/" +
@@ -27,7 +26,44 @@ function searchApi(mediaInputVal, genreInputVal) {
         searchResults.push(data.results[i]);
       }
       console.log(searchResults);
+      populateCards();
     });
+}
+
+function populateCards() {
+  for (var i = 0; i < searchResults.length; i++) {
+    //populates title and release date for movies
+    if (mediaInputVal === "movie") {
+      $(".search-title").each(function (i) {
+        $(this).text(searchResults[i].original_title);
+      });
+      $(".search-release").each(function (i) {
+        $(this).text(searchResults[i].release_date);
+      });
+
+      // populates title and first air date for tv (fields are named differently than when searching movies)
+    } else if (mediaInputVal === "tv") {
+      $(".search-title").each(function (i) {
+        $(this).text(searchResults[i].original_name);
+      });
+      $(".search-release").each(function (i) {
+        $(this).text(searchResults[i].first_air_date);
+      });
+    }
+
+    // populates summary for both movies and tv
+    $(".search-summary").each(function (i) {
+      $(this).text(searchResults[i].overview);
+    });
+
+    // populates the images for both movies and tv
+    $(".search-image").each(function (i) {
+      $(this).attr(
+        "src",
+        "https://image.tmdb.org/t/p/original/" + searchResults[i].poster_path
+      );
+    });
+  }
 }
 
 // Event listener
