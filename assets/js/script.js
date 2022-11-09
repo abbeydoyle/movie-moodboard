@@ -1,7 +1,8 @@
 var searchButtonEl = document.querySelector("#search-button");
 var mediaTypeEl = document.querySelector("#mv-tv");
 var mediaInputVal = "";
-var genreListEl = document.querySelector("#genres");
+var genreListMovieEl = document.querySelector("#genres-movie");
+var genreListTvEl = document.querySelector("#genres-tv");
 var genreInputVal = "";
 
 var searchResults = [];
@@ -34,8 +35,15 @@ function handleSearch(event) {
   event.preventDefault();
   console.log("Search Button Clicked!");
   mediaInputVal = mediaTypeEl.value;
-  genreInputVal = genreListEl.value;
   console.log("mediaInputVal: " + mediaInputVal);
+  if (mediaInputVal === "movie") {
+    genreInputVal = genreListMovieEl.value;
+  } else if (mediaInputVal === "tv") {
+    genreInputVal = genreListTvEl.value;
+  } else {
+    return;
+  }
+
   console.log("genreInputVal: " + genreInputVal);
 
   searchApi(mediaInputVal, genreInputVal);
