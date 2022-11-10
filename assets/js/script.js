@@ -64,6 +64,10 @@ function populateCards() {
       );
     });
   }
+  // Resets the searchApi input variables and array after the cards are populated so the user can search again
+  mediaInputVal = "";
+  genreInputVal = "";
+  searchResults = [];
 }
 
 // Event listener
@@ -83,6 +87,11 @@ function handleSearch(event) {
   console.log("genreInputVal: " + genreInputVal);
 
   searchApi(mediaInputVal, genreInputVal);
+
+  // Resets the dropdown after the submit button is clicked
+  mediaTypeEl.value = "";
+  genreListMovieEl.value = "";
+  genreListTvEl.value = "";
 }
 
 searchButtonEl.addEventListener("click", handleSearch);
