@@ -52,37 +52,102 @@ function populateCards() {
   for (var i = 0; i < searchResults.length; i++) {
     //populates title and release date for movies
     if (mediaInputVal === "movie") {
-      $(".search-title").each(function (i) {
-        $(this).text(searchResults[i].original_title);
-      });
-      $(".search-release").each(function (i) {
-        $(this).text(searchResults[i].release_date);
-      });
+
+      var cardTemplate = function(data){
+
+        return `<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+        <a
+          href=""
+          class="c-card block bg-white shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
+        >
+          <div class="relative pb-48 overflow-hidden">
+            <img
+              class="search-image absolute inset-0 h-full w-full object-cover"
+              src="assets/images/placeholder.png"
+              alt=""
+            />
+          </div>
+          <div class="p-4">
+            <span
+              class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              >${searchResults[i].release_date}</span
+            >
+            <span
+              class="search-rating inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              >Tomato Rating</span
+            >
+            <h2 class="search-title mt-2 mb-2 font-bold">
+              ${searchResults[i].original_title}
+            </h2>
+            <p class="search-summary text-sm">
+            ${searchResults[i].overview}
+            </p>
+          </div>
+        </a>
+      </div>`
+      }
+
 
       // populates title and first air date for tv (fields are named differently than when searching movies)
     } else if (mediaInputVal === "tv") {
-      $(".search-title").each(function (i) {
-        $(this).text(searchResults[i].original_name);
-      });
-      $(".search-release").each(function (i) {
-        $(this).text(searchResults[i].first_air_date);
-      });
+
+      var cardTemplate = function(data){
+
+        return `<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+        <a
+          href=""
+          class="c-card block bg-white shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
+        >
+          <div class="relative pb-48 overflow-hidden">
+            <img
+              class="search-image absolute inset-0 h-full w-full object-cover"
+              src="assets/images/placeholder.png"
+              alt=""
+            />
+          </div>
+          <div class="p-4">
+            <span
+              class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              >${searchResults[i].first_air_date}</span
+            >
+            <span
+              class="search-rating inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              >Tomato Rating</span
+            >
+            <h2 class="search-title mt-2 mb-2 font-bold">
+              ${searchResults[i].original_name}
+            </h2>
+            <p class="search-summary text-sm">
+            ${searchResults[i].overview}
+            </p>
+          </div>
+        </a>
+      </div>`
+      }
     }
 
     // populates summary for both movies and tv
-    $(".search-summary").each(function (i) {
-      $(this).text(searchResults[i].overview);
-    });
+    // $(".search-summary").each(function (i) {
+    //   $(this).text(searchResults[i].overview);
+    // });
 
-    // populates the images for both movies and tv
-    $(".search-image").each(function (i) {
-      $(this).attr(
-        "src",
-        "https://image.tmdb.org/t/p/original/" + searchResults[i].poster_path
-      );
-    });
+    // // populates the images for both movies and tv
+    // $(".search-image").each(function (i) {
+    //   $(this).attr(
+    //     "src",
+    //     "https://image.tmdb.org/t/p/original/" + searchResults[i].poster_path
+    //   );
+    // });
+//     var cards = ''
+//     for(var i = 0; i < data.length; i++){
+//       cards += cardTemplate(data[i]);
+// }
+
+$(".fivedayforecast").append(cardTemplate);
+// document.getElementById('test').innerHTML = cardTemplate
   }
 }
+
 
 // Event listener
 function handleSearch(event) {
