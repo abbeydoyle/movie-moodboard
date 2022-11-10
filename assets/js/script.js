@@ -6,28 +6,46 @@ var genreListTvEl = document.querySelector("#genres-tv");
 var genreInputVal = "";
 
 var searchResults = [];
+var ratingResults = [];
 
-function searchApi(mediaInputVal, genreInputVal) {
-  var requestUrl =
-    "https://api.themoviedb.org/3/discover/" +
-    mediaInputVal +
-    "?api_key=da2cce0ba3658a8b3c115c3c7c8178e5&sort_by=popularity.desc&with_genres=" +
-    genreInputVal +
-    "&with_original_language=en";
+async function searchApi(mediaInputVal, genreInputVal) {
+  console.log("STARTED!");
+  try {
+    var genreSearch = "";
+    console.log(mediaInputVal);
+    console.log(genreInputVal);
+    const requestUrl =
+      "https://api.themoviedb.org/3/discover/" +
+      mediaInputVal +
+      "?api_key=da2cce0ba3658a8b3c115c3c7c8178e5&sort_by=popularity.desc&with_genres=" +
+      genreInputVal +
+      "&with_original_language=en";
+    genreSearch = await fetch(requestUrl);
+    var genreSearchData = await genreSearch.json();
+    searchResults = genreSearchData.results;
+    console.log(searchResults);
+    populateCards();
+    var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
+    for (var i = 0; i < searchResults.length; i++) {
+      const ratingSearch = await fetch(
+        ratingUrl + searchResults[i].original_title
+      );
+      var ratingSearchData = await ratingSearch.json();
 
-  https: fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      console.log(data.results.length);
-      for (var i = 0; i < data.results.length; i++) {
-        searchResults.push(data.results[i]);
-      }
-      console.log(searchResults);
-      populateCards();
-    });
+      console.log(ratingSearchData);
+      searchResults[i].imdbRating = ratingSearchData.imdbRating;
+
+      $(".search-rating").each(function (k) {
+        $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
+      });
+    }
+    // Resets the searchApi input variables and array after the cards are populated so the user can search again
+    mediaInputVal = "";
+    genreInputVal = "";
+    searchResults = [];
+  } catch (error) {
+    console.log("Error: " + error);
+  }
 }
 
 function populateCards() {
@@ -64,10 +82,6 @@ function populateCards() {
       );
     });
   }
-  // Resets the searchApi input variables and array after the cards are populated so the user can search again
-  mediaInputVal = "";
-  genreInputVal = "";
-  searchResults = [];
 }
 
 // Event listener
@@ -81,6 +95,7 @@ function handleSearch(event) {
   } else if (mediaInputVal === "tv") {
     genreInputVal = genreListTvEl.value;
   } else {
+    console.log("EXIT");
     return;
   }
 
