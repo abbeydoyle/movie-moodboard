@@ -45,3 +45,7 @@ for(var i = 0; i < data.length; i++){
 }
 
 document.getElementById('test').innerHTML = cards
+
+
+
+///////

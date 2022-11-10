@@ -143,7 +143,7 @@ function populateCards() {
 //       cards += cardTemplate(data[i]);
 // }
 
-$(".fivedayforecast").append(cardTemplate);
+$(".cardcontainer").append(cardTemplate);
 // document.getElementById('test').innerHTML = cardTemplate
   }
 }
