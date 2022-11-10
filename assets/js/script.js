@@ -9,11 +9,10 @@ var searchResults = [];
 var ratingResults = [];
 
 async function searchApi(mediaInputVal, genreInputVal) {
-  console.log("STARTED!");
   try {
     var genreSearch = "";
-    console.log(mediaInputVal);
-    console.log(genreInputVal);
+    // console.log(mediaInputVal);
+    // console.log(genreInputVal);
     const requestUrl =
       "https://api.themoviedb.org/3/discover/" +
       mediaInputVal +
@@ -23,21 +22,24 @@ async function searchApi(mediaInputVal, genreInputVal) {
     genreSearch = await fetch(requestUrl);
     var genreSearchData = await genreSearch.json();
     searchResults = genreSearchData.results;
-    console.log(searchResults);
+    // console.log(searchResults);
     populateCards();
-    var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
-    for (var i = 0; i < searchResults.length; i++) {
-      const ratingSearch = await fetch(
-        ratingUrl + searchResults[i].original_title
-      );
-      var ratingSearchData = await ratingSearch.json();
+    if (mediaInputVal === "movie") {
+      var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
+      for (var i = 0; i < searchResults.length; i++) {
+        const ratingSearch = await fetch(
+          ratingUrl + searchResults[i].original_title
+        );
+        var ratingSearchData = await ratingSearch.json();
 
-      console.log(ratingSearchData);
-      searchResults[i].imdbRating = ratingSearchData.imdbRating;
+        // console.log(ratingSearchData);
+        searchResults[i].imdbRating = ratingSearchData.imdbRating;
 
-      $(".search-rating").each(function (k) {
-        $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
-      });
+        $(".search-rating").each(function (k) {
+          $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
+          $(this).addClass("visible").removeClass("invisible");
+        });
+      }
     }
     // Resets the searchApi input variables and array after the cards are populated so the user can search again
     mediaInputVal = "";
@@ -87,19 +89,19 @@ function populateCards() {
 // Event listener
 function handleSearch(event) {
   event.preventDefault();
-  console.log("Search Button Clicked!");
+  // console.log("Search Button Clicked!");
   mediaInputVal = mediaTypeEl.value;
-  console.log("mediaInputVal: " + mediaInputVal);
+  // console.log("mediaInputVal: " + mediaInputVal);
   if (mediaInputVal === "movie") {
     genreInputVal = genreListMovieEl.value;
   } else if (mediaInputVal === "tv") {
     genreInputVal = genreListTvEl.value;
   } else {
-    console.log("EXIT");
+    // console.log("EXIT");
     return;
   }
 
-  console.log("genreInputVal: " + genreInputVal);
+  // console.log("genreInputVal: " + genreInputVal);
 
   searchApi(mediaInputVal, genreInputVal);
 
@@ -110,3 +112,17 @@ function handleSearch(event) {
 }
 
 searchButtonEl.addEventListener("click", handleSearch);
+
+// Event listener for format dropdown to control if the movie or tv genre dropdown is shown
+$("#mv-tv").change(function () {
+  var selectedFormat = $(this).val();
+  if (selectedFormat === "movie") {
+    $("#genres-movie").addClass("block").removeClass("hidden");
+    $("#genres-tv").addClass("hidden").removeClass("block");
+  } else if (selectedFormat === "tv") {
+    $("#genres-tv").addClass("block").removeClass("hidden");
+    $("#genres-movie").addClass("hidden").removeClass("block");
+  } else {
+    return;
+  }
+});
