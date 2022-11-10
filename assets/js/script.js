@@ -11,11 +11,11 @@ function searchApi(mediaInputVal, genreInputVal) {
   var requestUrl =
     "https://api.themoviedb.org/3/discover/" +
     mediaInputVal +
-    "?with_genres=" +
+    "?api_key=da2cce0ba3658a8b3c115c3c7c8178e5&sort_by=popularity.desc&with_genres=" +
     genreInputVal +
-    "sort_by=populatiry.desc&primary_release_year=2022&original_language=en&api_key=da2cce0ba3658a8b3c115c3c7c8178e5";
+    "&with_original_language=en";
 
-  fetch(requestUrl)
+  https: fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
