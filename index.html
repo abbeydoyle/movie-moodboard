@@ -32,6 +32,7 @@
     <div class="grid grid-cols-8 gap-3" id = "userSearch">
       <!-- This is our search column -->
       <div class="bg-inherit  col-span-2 py-10 px-5">
+        <aside class ="sticky top-[200px]">
         <h3 class="font-bold text-3xl">Choose your format:</h3>
         <br />
         <form>
@@ -94,7 +95,7 @@
               <option value="10764">Reality</option>
               <option value="10765">Sci-Fi & Fantasy</option>
               <option value="10766">Soap</option>
-              <option value="10767">Talk</option>
+              <option value="10767">Talk Show</option>
               <option value="10768">War & Politics</option>
               <option value="37">Western</option>
             </select>
@@ -119,7 +120,11 @@
           <h3 class="font-bold text-3xl">Search History:</h3>
           <br />
           <!-- TODO: populate search history -->
-          <div class = "historyBlock text-xl font-semibold"></div>
+          <div class = "historyBlock text-xl font-semibold">
+            <div id = "searchBlock">
+
+            </div>
+          </div>
         </div>
       </div>
       <!-- This will be our card column -->
@@ -134,6 +139,7 @@
           </div>
         </div>
       </div>
+    </aside>
     </div>
 
     <footer class="text-center py-20 px-6">
