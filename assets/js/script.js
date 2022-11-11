@@ -110,10 +110,6 @@ function populateCards() {
               class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].first_air_date}</span
             >
-            <span
-              class="search-rating inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
-              >Tomato Rating</span
-            >
             <h2 class="search-title mt-2 mb-2 font-bold">
               ${searchResults[i].original_name}
             </h2>
