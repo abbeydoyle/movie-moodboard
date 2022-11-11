@@ -76,6 +76,11 @@ body {
       background-color: #bcbcbc;
 }
 
+hr {
+      border: 1px solid #bcbcbc;
+      border-radius: 5px;
+}
+
 
 @media screen and (max-width: 992px) {
    

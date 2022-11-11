@@ -278,6 +278,7 @@ $("#mv-tv").change(function () {
 });
 
 function renderColorScheme() {
+  $(".movieImage").remove()
   if (genreInputVal === "28") {
     $("#body").addClass("bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]")
     $("header").addClass("text-[#bcbcbc]")
