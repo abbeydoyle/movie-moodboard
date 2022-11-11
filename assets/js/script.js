@@ -92,7 +92,7 @@ function populateCards() {
       // populates title and first air date for tv (fields are named differently than when searching movies)
     } else if (mediaInputVal === "tv") {
       var cardTemplate = function (data) {
-        return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 bg-[#bcbcbc]" id = "movieCard">
+        return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
         <a
           href=""
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
@@ -105,7 +105,7 @@ function populateCards() {
               
             />
           </div>
-          <div class="p-4">
+          <div class="p-4 movieCard">
             <span
               class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].first_air_date}</span
