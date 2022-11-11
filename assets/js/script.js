@@ -60,7 +60,7 @@ function populateCards() {
         return `<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
         <a
           href=""
-          class="c-card block bg-white shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
+          class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
         >
           <div class="relative pb-48 overflow-hidden">
             <img
@@ -69,7 +69,7 @@ function populateCards() {
               alt=""
             />
           </div>
-          <div class="p-4">
+          <div class="p-4 movieCard">
             <span
               class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].release_date}</span
@@ -95,10 +95,10 @@ function populateCards() {
 
       var cardTemplate = function(data){
 
-        return `<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+        return `<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 bg-[#bcbcbc]" id = "movieCard">
         <a
           href=""
-          class="c-card block bg-white shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
+          class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
         >
           <div class="relative pb-48 overflow-hidden">
             <img
@@ -171,12 +171,8 @@ function handleSearch(event) {
   searchApi(mediaInputVal, genreInputVal);
 
   renderSearchHistory();
-  // var searchHistory = genreInputVal + " " + mediaInputVal;
-  // var searchItem = searchHistory.valueOf()
 
-  // $(".historyBlock").append(searchItem);
-
-
+  renderColorScheme();
 
   // Resets the dropdown after the submit button is clicked
   mediaTypeEl.value = "";
@@ -280,3 +276,22 @@ $("#mv-tv").change(function () {
     return;
   }
 });
+
+function renderColorScheme() {
+  if (genreInputVal === "28") {
+    $("#body").addClass("bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]")
+    $("header").addClass("text-[#bcbcbc]")
+    $("#userSearch").addClass("text-[#bcbcbc]")
+    $(".historyBlock").addClass("text-[#bcbcbc]")
+    $(".movieCard").addClass("bg-[#bcbcbc] text-[#0a0d5e]")
+    $("footer").addClass("text-[#bcbcbc]")
+    // $("p").addClass("text-[#bcbcbc]")
+    // $(".searchSummary").addClass("text-blue-700")
+    // $(".searchTitle").addClass("text-blue-700")
+  }
+  else if (genreInputVal === "12") {
+    genreInputName = "Adventure"
+  }
+}
+
+//
