@@ -1,33 +1,33 @@
 /* declare colors as variables */
 :root {
 
-      /* horror */
-      --maroon: #5c131b;
+      /* horror crime */
+      --maroon: #5d131c;
       --rich-red: #6e1722;
       --mold-green: #2c3a21;
       --burnt-orange: #9b5506;
       --black: #000000;
       --white: #ffffff;
 
-      /* comedy */
-      --yellow: #f4e626;
-      --red: #d71515;
+      /* comedy talk family animation*/
+      --yellow: #9f961c;
+      --red: #a11212;
       --black: #000000;
       --white: #ffffff;
 
-      /* action */
+      /* action, kids, news, war politics */
       --blue: #0a0d5e;
       --red: #721010;
       --black: #000000;
       --white: #bcbcbc;
       
-      /* adventure */
-      --forest-green: #0c4402;
-      --gold: #b18605;
+      /* adventure, western */
+      --forest-green: #042900;
+      --gold: #674e02;
       --black: #000000;
       --white: #ffffff;
 
-      /* romance */
+      /* romance no */
       --rich-red: #6e1722;
       --light-pink: #d85ca7;
       --dark-pink: #be1179;
@@ -35,17 +35,17 @@
       --black: #000000;
       --white: #ffffff;
 
-      /* drama */
+      /* drama, soap, reality, romance */
       --rich-red: #6e1722;
       --purple: #6e176c; 
       --black: #000000;
       --white: #ffffff;    
 
-      /* scifi */
-      --silver: #a5a5a5;
+      /* scifi doc*/
+      --silver: #7a7a7a;
       --ooze-green: #39d321;
       --mold-green: #2c3a21;
-      --blue: #101597;
+      --blue: #0c0f6e;
       --black: #000000;
       --white: #ffffff;
 
