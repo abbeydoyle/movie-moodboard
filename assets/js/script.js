@@ -65,7 +65,7 @@ function populateCards() {
           <div class="relative pb-48 overflow-hidden">
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
-              src="https://image.tmdb.org/t/p/original/${searchResults[i].poster_path}"
+              src="https://image.tmdb.org/t/p/original/${searchResults[i].backdrop_path}"
               alt=""
             />
           </div>
@@ -100,7 +100,7 @@ function populateCards() {
           <div class="relative pb-48 overflow-hidden">
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
-              src="https://image.tmdb.org/t/p/original/${searchResults[i].poster_path}"
+              src="https://image.tmdb.org/t/p/original/${searchResults[i].backdrop_path}"
               alt=""
               
             />
@@ -109,10 +109,6 @@ function populateCards() {
             <span
               class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].first_air_date}</span
-            >
-            <span
-              class="search-rating inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
-              >Tomato Rating</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
               ${searchResults[i].original_name}
