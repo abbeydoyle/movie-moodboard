@@ -23,6 +23,7 @@ async function searchApi(mediaInputVal, genreInputVal) {
     var genreSearchData = await genreSearch.json();
     searchResults = genreSearchData.results;
     // console.log(searchResults);
+    $(".showCard").remove();
     populateCards();
     if (mediaInputVal === "movie") {
       var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
@@ -45,6 +46,7 @@ async function searchApi(mediaInputVal, genreInputVal) {
     mediaInputVal = "";
     genreInputVal = "";
     searchResults = [];
+    ratingResults = [];
   } catch (error) {
     console.log("Error: " + error);
   }
@@ -54,10 +56,8 @@ function populateCards() {
   for (var i = 0; i < searchResults.length; i++) {
     //populates title and release date for movies
     if (mediaInputVal === "movie") {
-
-      var cardTemplate = function(data){
-
-        return `<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+      var cardTemplate = function (data) {
+        return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
         <a
           href=""
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
@@ -65,7 +65,7 @@ function populateCards() {
           <div class="relative pb-48 overflow-hidden">
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
-              src="assets/images/placeholder.png"
+              src="https://image.tmdb.org/t/p/original/${searchResults[i].poster_path}"
               alt=""
             />
           </div>
@@ -86,16 +86,13 @@ function populateCards() {
             </p>
           </div>
         </a>
-      </div>`
-      }
-
+      </div>`;
+      };
 
       // populates title and first air date for tv (fields are named differently than when searching movies)
     } else if (mediaInputVal === "tv") {
-
-      var cardTemplate = function(data){
-
-        return `<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 bg-[#bcbcbc]" id = "movieCard">
+      var cardTemplate = function (data) {
+        return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 bg-[#bcbcbc]" id = "movieCard">
         <a
           href=""
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
@@ -103,8 +100,9 @@ function populateCards() {
           <div class="relative pb-48 overflow-hidden">
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
-              src="assets/images/placeholder.png"
+              src="https://image.tmdb.org/t/p/original/${searchResults[i].poster_path}"
               alt=""
+              
             />
           </div>
           <div class="p-4">
@@ -124,32 +122,12 @@ function populateCards() {
             </p>
           </div>
         </a>
-      </div>`
-      }
+      </div>`;
+      };
     }
-
-    // populates summary for both movies and tv
-    // $(".search-summary").each(function (i) {
-    //   $(this).text(searchResults[i].overview);
-    // });
-
-    // // populates the images for both movies and tv
-    // $(".search-image").each(function (i) {
-    //   $(this).attr(
-    //     "src",
-    //     "https://image.tmdb.org/t/p/original/" + searchResults[i].poster_path
-    //   );
-    // });
-//     var cards = ''
-//     for(var i = 0; i < data.length; i++){
-//       cards += cardTemplate(data[i]);
-// }
-
-$(".cardcontainer").append(cardTemplate);
-// document.getElementById('test').innerHTML = cardTemplate
+    $(".cardcontainer").append(cardTemplate);
   }
 }
-
 
 // Event listener
 function handleSearch(event) {
@@ -182,85 +160,63 @@ function handleSearch(event) {
 
 searchButtonEl.addEventListener("click", handleSearch);
 
-
-
 function renderSearchHistory() {
   var genreInputName;
 
   if (genreInputVal === "28") {
-    genreInputName = "Action"
-  }
-  else if (genreInputVal === "12") {
-    genreInputName = "Adventure"
-  }
-  else if (genreInputVal === "35") {
-    genreInputName = "Comedy"
-  }
-  else if (genreInputVal === "27") {
-    genreInputName = "Horror"
-  }
-  else if (genreInputVal === "10749") {
-    genreInputName = "Romance"
-  }
-  else if (genreInputVal === "18") {
-    genreInputName = "Drama"
-  }
-  else if (genreInputVal === "878") {
-    genreInputName = "Sci-Fi"
-  }
-  else if (genreInputVal === "99") {
-    genreInputName = "Documentary"
-  }
-  else if (genreInputVal === "9648") {
-    genreInputName = "Mystery"
-  }
-  else if (genreInputVal === "35") {
-    genreInputName = "Animation"
-  }
-  else if (genreInputVal === "80") {
-    genreInputName = "Crime"
-  }
-  else if (genreInputVal === "10751") {
-    genreInputName = "Family"
-  }
-  else if (genreInputVal === "10762") {
-    genreInputName = "Kids"
-  }
-  else if (genreInputVal === "10763") {
-    genreInputName = "News"
-  }
-  else if (genreInputVal === "10764") {
-    genreInputName = "Reality"
-  }
-  else if (genreInputVal === "10765") {
-    genreInputName = "Sci-Fi & Fantasy"
-  }
-  else if (genreInputVal === "10766") {
-    genreInputName = "Soap"
-  }
-  else if (genreInputVal === "10767") {
-    genreInputName = "Talk"
-  }
-  else if (genreInputVal === "10768") {
-    genreInputName = "War & Politics"
-  }
-  else if (genreInputVal === "37") {
-    genreInputName = "Western"
+    genreInputName = "Action";
+  } else if (genreInputVal === "12") {
+    genreInputName = "Adventure";
+  } else if (genreInputVal === "35") {
+    genreInputName = "Comedy";
+  } else if (genreInputVal === "27") {
+    genreInputName = "Horror";
+  } else if (genreInputVal === "10749") {
+    genreInputName = "Romance";
+  } else if (genreInputVal === "18") {
+    genreInputName = "Drama";
+  } else if (genreInputVal === "878") {
+    genreInputName = "Sci-Fi";
+  } else if (genreInputVal === "99") {
+    genreInputName = "Documentary";
+  } else if (genreInputVal === "9648") {
+    genreInputName = "Mystery";
+  } else if (genreInputVal === "35") {
+    genreInputName = "Animation";
+  } else if (genreInputVal === "80") {
+    genreInputName = "Crime";
+  } else if (genreInputVal === "10751") {
+    genreInputName = "Family";
+  } else if (genreInputVal === "10762") {
+    genreInputName = "Kids";
+  } else if (genreInputVal === "10763") {
+    genreInputName = "News";
+  } else if (genreInputVal === "10764") {
+    genreInputName = "Reality";
+  } else if (genreInputVal === "10765") {
+    genreInputName = "Sci-Fi & Fantasy";
+  } else if (genreInputVal === "10766") {
+    genreInputName = "Soap";
+  } else if (genreInputVal === "10767") {
+    genreInputName = "Talk";
+  } else if (genreInputVal === "10768") {
+    genreInputName = "War & Politics";
+  } else if (genreInputVal === "37") {
+    genreInputName = "Western";
   }
 
   var mediaInputName;
 
   if (mediaInputVal === "movie") {
-    mediaInputName = "Movie"
+    mediaInputName = "Movie";
   } else {
-    mediaInputName = "TV Show"
+    mediaInputName = "TV Show";
   }
 
   var searchHistory = genreInputName + " " + mediaInputName;
-  var searchItem = searchHistory.valueOf()
+  var searchItem = searchHistory.valueOf();
 
   $(".historyBlock").append(searchItem);
-
 }
 
 // Event listener for format dropdown to control if the movie or tv genre dropdown is shown
@@ -279,18 +235,19 @@ $("#mv-tv").change(function () {
 
 function renderColorScheme() {
   if (genreInputVal === "28") {
-    $("#body").addClass("bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]")
-    $("header").addClass("text-[#bcbcbc]")
-    $("#userSearch").addClass("text-[#bcbcbc]")
-    $(".historyBlock").addClass("text-[#bcbcbc]")
-    $(".movieCard").addClass("bg-[#bcbcbc] text-[#0a0d5e]")
-    $("footer").addClass("text-[#bcbcbc]")
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
+    $("header").addClass("text-[#bcbcbc]");
+    $("#userSearch").addClass("text-[#bcbcbc]");
+    $(".historyBlock").addClass("text-[#bcbcbc]");
+    $(".movieCard").addClass("bg-[#bcbcbc] text-[#0a0d5e]");
+    $("footer").addClass("text-[#bcbcbc]");
     // $("p").addClass("text-[#bcbcbc]")
     // $(".searchSummary").addClass("text-blue-700")
     // $(".searchTitle").addClass("text-blue-700")
-  }
-  else if (genreInputVal === "12") {
-    genreInputName = "Adventure"
+  } else if (genreInputVal === "12") {
+    genreInputName = "Adventure";
   }
 }
 
