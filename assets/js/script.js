@@ -71,11 +71,11 @@ function populateCards() {
           </div>
           <div class="p-4 movieCard">
             <span
-              class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              class="search-release inline-block px-2 py-1 bg-orange-200 text-orange-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].release_date}</span
             >
             <span
-              class="search-rating inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              class="search-rating inline-block px-2 py-1 bg-orange-200 text-orange-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
               >Tomato Rating</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
@@ -177,6 +177,8 @@ function renderSearchHistory() {
     genreInputName = "Documentary";
   } else if (genreInputVal === "9648") {
     genreInputName = "Mystery";
+  } else if (genreInputVal === "10759") {
+      genreInputName = "Action & Adventure";
   } else if (genreInputVal === "35") {
     genreInputName = "Animation";
   } else if (genreInputVal === "80") {
@@ -242,6 +244,7 @@ function renderColorScheme() {
     // action done
     $("#body").addClass(
       "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]");
+
       //adventure done
   }  else if (genreInputVal === "12") {
         $("#body").addClass(
@@ -266,6 +269,7 @@ function renderColorScheme() {
   } else if (genreInputVal === "878") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]");
+    $(".bubble").addClass("bg-orange-200 text-orange-800")
     //doc done
   } else if (genreInputVal === "99") {
     $("#body").addClass(
@@ -274,6 +278,9 @@ function renderColorScheme() {
   } else if (genreInputVal === "9648") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]");
+    } else if (genreInputVal === "10759") {
+      $("#body").addClass(
+        "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]");
     //animation done
   } else if (genreInputVal === "35") {
     $("#body").addClass(
