@@ -170,6 +170,14 @@ function handleSearch(event) {
 
   searchApi(mediaInputVal, genreInputVal);
 
+  renderSearchHistory();
+  // var searchHistory = genreInputVal + " " + mediaInputVal;
+  // var searchItem = searchHistory.valueOf()
+
+  // $(".historyBlock").append(searchItem);
+
+
+
   // Resets the dropdown after the submit button is clicked
   mediaTypeEl.value = "";
   genreListMovieEl.value = "";
@@ -177,6 +185,87 @@ function handleSearch(event) {
 }
 
 searchButtonEl.addEventListener("click", handleSearch);
+
+
+
+function renderSearchHistory() {
+  var genreInputName;
+
+  if (genreInputVal === "28") {
+    genreInputName = "Action"
+  }
+  else if (genreInputVal === "12") {
+    genreInputName = "Adventure"
+  }
+  else if (genreInputVal === "35") {
+    genreInputName = "Comedy"
+  }
+  else if (genreInputVal === "27") {
+    genreInputName = "Horror"
+  }
+  else if (genreInputVal === "10749") {
+    genreInputName = "Romance"
+  }
+  else if (genreInputVal === "18") {
+    genreInputName = "Drama"
+  }
+  else if (genreInputVal === "878") {
+    genreInputName = "Sci-Fi"
+  }
+  else if (genreInputVal === "99") {
+    genreInputName = "Documentary"
+  }
+  else if (genreInputVal === "9648") {
+    genreInputName = "Mystery"
+  }
+  else if (genreInputVal === "35") {
+    genreInputName = "Animation"
+  }
+  else if (genreInputVal === "80") {
+    genreInputName = "Crime"
+  }
+  else if (genreInputVal === "10751") {
+    genreInputName = "Family"
+  }
+  else if (genreInputVal === "10762") {
+    genreInputName = "Kids"
+  }
+  else if (genreInputVal === "10763") {
+    genreInputName = "News"
+  }
+  else if (genreInputVal === "10764") {
+    genreInputName = "Reality"
+  }
+  else if (genreInputVal === "10765") {
+    genreInputName = "Sci-Fi & Fantasy"
+  }
+  else if (genreInputVal === "10766") {
+    genreInputName = "Soap"
+  }
+  else if (genreInputVal === "10767") {
+    genreInputName = "Talk"
+  }
+  else if (genreInputVal === "10768") {
+    genreInputName = "War & Politics"
+  }
+  else if (genreInputVal === "37") {
+    genreInputName = "Western"
+  }
+
+  var mediaInputName;
+
+  if (mediaInputVal === "movie") {
+    mediaInputName = "Movie"
+  } else {
+    mediaInputName = "TV Show"
+  }
+
+  var searchHistory = genreInputName + " " + mediaInputName;
+  var searchItem = searchHistory.valueOf()
+
+  $(".historyBlock").append(searchItem);
+
+}
 
 // Event listener for format dropdown to control if the movie or tv genre dropdown is shown
 $("#mv-tv").change(function () {
