@@ -231,6 +231,7 @@ $("#mv-tv").change(function () {
 
 function renderColorScheme() {
 
+  $(".movieImage").remove()
   $("header").addClass("text-[#bcbcbc]");
   $("#userSearch").addClass("text-[#bcbcbc]");
   $(".historyBlock").addClass("text-[#bcbcbc]");
