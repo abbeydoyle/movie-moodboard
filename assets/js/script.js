@@ -215,7 +215,21 @@ function renderSearchHistory() {
   var searchHistory = genreInputName + " " + mediaInputName;
   var searchItem = searchHistory.valueOf();
 
-  $(".historyBlock").append(searchItem);
+  searches.push(searchHistory);
+  localStorage.setItem("searches", JSON.stringify(searches));
+  populateSearchList();
+}
+function populateSearchList() {
+  var searchHistoryList = document.getElementById("searchBlock");
+  searchHistoryList.innerHTML = "";
+  for (let i = searches.length - 1; i >= 0; i--) {
+    var searchTerm = searches[i];
+    var searchTermElement = document.createElement("li");
+    searchTermElement.setAttribute("class", "search-history-li");
+
+    searchTermElement.textContent = searchTerm;
+    searchHistoryList.append(searchTermElement);
+  }
 }
 
 searchHistory = genreInputName + " " + mediaInputName;
