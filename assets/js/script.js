@@ -9,6 +9,12 @@ var searchHistory;
 var searchResults = [];
 var ratingResults = [];
 
+// TODO: mat
+$(document).ready(function () {
+  retrieveLocalStorage();
+  populateSearchList();
+});
+
 async function searchApi(mediaInputVal, genreInputVal) {
   try {
     var genreSearch = "";
@@ -149,6 +155,7 @@ function handleSearch(event) {
 
   renderColorScheme();
 
+
   // Resets the dropdown after the submit button is clicked
   mediaTypeEl.value = "";
   genreListMovieEl.value = "";
@@ -208,7 +215,7 @@ function renderSearchHistory() {
 
   if (mediaInputVal === "movie") {
     mediaInputName = "Movie";
-  } else {
+  } else if (mediaInputVal === "tv"){
     mediaInputName = "TV Show";
   }
 
@@ -217,8 +224,11 @@ function renderSearchHistory() {
 
   searches.push(searchHistory);
   localStorage.setItem("searches", JSON.stringify(searches));
+  // TODO: mat 
+  retrieveLocalStorage();
   populateSearchList();
 }
+
 function populateSearchList() {
   var searchHistoryList = document.getElementById("searchBlock");
   searchHistoryList.innerHTML = "";
@@ -232,27 +242,9 @@ function populateSearchList() {
   }
 }
 
-searchHistory = genreInputName + " " + mediaInputName;
-var searchItem = searchHistory.valueOf();
-searches.push(searchHistory);
-localStorage.setItem("searches", JSON.stringify(searches));
-populateSearchList();
-// $(".historyBlock").append(searchItem);
-
-function populateSearchList() {
-  var searchHistoryList = document.getElementById("searchBlock");
-  searchHistoryList.innerHTML = "";
-  for (let i = searches.length - 1; i >= 0; i--) {
-    var searchTerm = searches[i];
-    var searchTermElement = document.createElement("li");
-    searchTermElement.setAttribute("class", "search-history-li");
-
-    searchTermElement.textContent = searchTerm;
-    searchHistoryList.append(searchTermElement);
-    // searchTermElement.on("click", function () {
-    //   mealSearch($(this).attr("data-search"));
-    // });
-  }
+// TODO: mat
+function retrieveLocalStorage() {
+  searches = JSON.parse(localStorage.getItem("searches")) || [];
 }
 
 // Event listener for format dropdown to control if the movie or tv genre dropdown is shown
