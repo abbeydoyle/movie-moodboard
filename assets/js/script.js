@@ -253,7 +253,7 @@ function populateSearchList() {
   for (let i = searches.length - 1; i >= 0; i--) {
     var searchTerm = searches[i];
     var searchTermElement = document.createElement("li");
-    searchTermElement.setAttribute("class", "search-history-li");
+    searchTermElement.setAttribute("class", "search-history-li p-2");
 
     searchTermElement.textContent = searchTerm;
     searchHistoryList.append(searchTermElement);
