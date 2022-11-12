@@ -1,4 +1,5 @@
 var searchButtonEl = document.querySelector("#search-button");
+var clearButtonEl = document.querySelector("#clearButton");
 var mediaTypeEl = document.querySelector("#mv-tv");
 var mediaInputVal = "";
 var genreListMovieEl = document.querySelector("#genres-movie");
@@ -227,7 +228,24 @@ function renderSearchHistory() {
   // TODO: mat 
   retrieveLocalStorage();
   populateSearchList();
+
 }
+
+// clearButtonEl.addEventListener("click", clearSearchHistory());
+
+// function clearSearchHistory(event) {
+//   event.preventDefault();
+//   // Clear localStorage items 
+//   localStorage.clear();
+//   location.reload();
+// }
+
+clearButtonEl.addEventListener('click', function () {
+  localStorage.clear();
+  location.reload();
+}, false);
+
+
 
 function populateSearchList() {
   var searchHistoryList = document.getElementById("searchBlock");
