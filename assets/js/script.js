@@ -4,7 +4,8 @@ var mediaInputVal = "";
 var genreListMovieEl = document.querySelector("#genres-movie");
 var genreListTvEl = document.querySelector("#genres-tv");
 var genreInputVal = "";
-
+var searches = [];
+var searchHistory;
 var searchResults = [];
 var ratingResults = [];
 
@@ -178,7 +179,7 @@ function renderSearchHistory() {
   } else if (genreInputVal === "9648") {
     genreInputName = "Mystery";
   } else if (genreInputVal === "10759") {
-      genreInputName = "Action & Adventure";
+    genreInputName = "Action & Adventure";
   } else if (genreInputVal === "35") {
     genreInputName = "Animation";
   } else if (genreInputVal === "80") {
@@ -217,6 +218,29 @@ function renderSearchHistory() {
   $(".historyBlock").append(searchItem);
 }
 
+searchHistory = genreInputName + " " + mediaInputName;
+var searchItem = searchHistory.valueOf();
+searches.push(searchHistory);
+localStorage.setItem("searches", JSON.stringify(searches));
+populateSearchList();
+// $(".historyBlock").append(searchItem);
+
+function populateSearchList() {
+  var searchHistoryList = document.getElementById("searchBlock");
+  searchHistoryList.innerHTML = "";
+  for (let i = searches.length - 1; i >= 0; i--) {
+    var searchTerm = searches[i];
+    var searchTermElement = document.createElement("li");
+    searchTermElement.setAttribute("class", "search-history-li");
+
+    searchTermElement.textContent = searchTerm;
+    searchHistoryList.append(searchTermElement);
+    // searchTermElement.on("click", function () {
+    //   mealSearch($(this).attr("data-search"));
+    // });
+  }
+}
+
 // Event listener for format dropdown to control if the movie or tv genre dropdown is shown
 $("#mv-tv").change(function () {
   var selectedFormat = $(this).val();
@@ -232,8 +256,7 @@ $("#mv-tv").change(function () {
 });
 
 function renderColorScheme() {
-
-  $(".movieImage").remove()
+  $(".movieImage").remove();
   $("header").addClass("text-[#bcbcbc]");
   $("#userSearch").addClass("text-[#bcbcbc]");
   $(".historyBlock").addClass("text-[#bcbcbc]");
@@ -243,88 +266,109 @@ function renderColorScheme() {
   if (genreInputVal === "28") {
     // action done
     $("#body").addClass(
-      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]");
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
 
-      //adventure done
-  }  else if (genreInputVal === "12") {
-        $("#body").addClass(
-      "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]");
-      //comedy done
+    //adventure done
+  } else if (genreInputVal === "12") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]"
+    );
+    //comedy done
   } else if (genreInputVal === "35") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]");
-      //horror done
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
+    //horror done
   } else if (genreInputVal === "27") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]");
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
     // romance done
   } else if (genreInputVal === "10749") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]");
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
   } else if (genreInputVal === "18") {
     // drama done
     $("#body").addClass(
-      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]");
-      //scifi done
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
+    //scifi done
   } else if (genreInputVal === "878") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]");
-    $(".bubble").addClass("bg-orange-200 text-orange-800")
+      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
+    );
+    $(".bubble").addClass("bg-orange-200 text-orange-800");
     //doc done
   } else if (genreInputVal === "99") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]");
+      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
+    );
     //mystery done
   } else if (genreInputVal === "9648") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]");
-    } else if (genreInputVal === "10759") {
-      $("#body").addClass(
-        "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]");
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
+  } else if (genreInputVal === "10759") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
     //animation done
   } else if (genreInputVal === "35") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]");
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
     //crime done
   } else if (genreInputVal === "80") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]");
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
     //family done
   } else if (genreInputVal === "10751") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]");
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
   } else if (genreInputVal === "10762") {
     // kids done
     $("#body").addClass(
-      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]");
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
   } else if (genreInputVal === "10763") {
     // news done
     $("#body").addClass(
-      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]");
-      //reality done
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
+    //reality done
   } else if (genreInputVal === "10764") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]");
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
     //scifi fantasy done
   } else if (genreInputVal === "10765") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]");
+      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
+    );
     //soap done
   } else if (genreInputVal === "10766") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]");
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
     //talk dnoe
   } else if (genreInputVal === "10767") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]");
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
   } else if (genreInputVal === "10768") {
     // war & politcs done
     $("#body").addClass(
-      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]");
-      // western done
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
+    // western done
   } else if (genreInputVal === "37") {
     $("#body").addClass(
-      "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]");
+      "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]"
+    );
   }
 }
 //
