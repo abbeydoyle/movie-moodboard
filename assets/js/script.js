@@ -1,3 +1,4 @@
+// decalare local variables
 var searchButtonEl = document.querySelector("#search-button");
 var clearButtonEl = document.querySelector("#clearButton");
 var mediaTypeEl = document.querySelector("#mv-tv");
@@ -10,12 +11,13 @@ var searchHistory;
 var searchResults = [];
 var ratingResults = [];
 
-// TODO: mat
+// retrieve and display local storage with webpage open
 $(document).ready(function () {
   retrieveLocalStorage();
   populateSearchList();
 });
 
+// api fetch function
 async function searchApi(mediaInputVal, genreInputVal) {
   try {
     var genreSearch = "";
@@ -32,8 +34,10 @@ async function searchApi(mediaInputVal, genreInputVal) {
     searchResults = genreSearchData.results;
     $(".showCard").remove();
 
+    // display card function with fetched data
     populateCards();
 
+    // use second api for movie data
     if (mediaInputVal === "movie") {
       var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
       for (var i = 0; i < searchResults.length; i++) {
@@ -60,6 +64,7 @@ async function searchApi(mediaInputVal, genreInputVal) {
       }
     }
 
+    // poster image fetch
     $(".search-image").each(function (k) {
       if (searchResults[k].backdrop_path == null) {
         $(this).attr(
@@ -79,6 +84,7 @@ async function searchApi(mediaInputVal, genreInputVal) {
   }
 }
 
+//populate cards with fetched data using a varred html tailwind card template on loop 
 function populateCards() {
   for (var i = 0; i < searchResults.length; i++) {
     //populates title and release date for movies
@@ -148,11 +154,12 @@ function populateCards() {
       </div>`;
       };
     }
+    //add card template to the container html element
     $(".cardcontainer").append(cardTemplate);
   }
 }
 
-// Event listener
+// Event listener search button
 function handleSearch(event) {
   event.preventDefault();
   // console.log("Search Button Clicked!");
@@ -183,9 +190,11 @@ function handleSearch(event) {
 
 searchButtonEl.addEventListener("click", handleSearch);
 
+// display search history based on user input
 function renderSearchHistory() {
   var genreInputName;
 
+  // must translate api numeric data to genre for display
   if (genreInputVal === "28") {
     genreInputName = "Action";
   } else if (genreInputVal === "12") {
@@ -238,6 +247,7 @@ function renderSearchHistory() {
     mediaInputName = "TV Show";
   }
 
+  // append assembled search history to page and add to local storage
   var searchHistory = genreInputName + " " + mediaInputName;
   var searchItem = searchHistory.valueOf();
 
@@ -248,6 +258,7 @@ function renderSearchHistory() {
   populateSearchList();
 }
 
+// event listener clear search history button and function
 clearButtonEl.addEventListener(
   "click",
   function () {
@@ -257,6 +268,7 @@ clearButtonEl.addEventListener(
   false
 );
 
+// append search history to ul html element
 function populateSearchList() {
   var searchHistoryList = document.getElementById("searchBlock");
   searchHistoryList.innerHTML = "";
@@ -270,7 +282,7 @@ function populateSearchList() {
   }
 }
 
-// TODO: mat
+// retrieves local storage and adds to empty array
 function retrieveLocalStorage() {
   searches = JSON.parse(localStorage.getItem("searches")) || [];
 }
@@ -289,7 +301,11 @@ $("#mv-tv").change(function () {
   }
 });
 
+
+// creates custom color scheme based off genre input using tailwind classes
 function renderColorScheme() {
+  // remove opening page image and add text colors and card background colors
+  //stays the same regardless of genre
   $(".movieImage").remove();
   $("header").addClass("text-[#bcbcbc]");
   $("#userSearch").addClass("text-[#bcbcbc]");
@@ -298,62 +314,61 @@ function renderColorScheme() {
   $("footer").addClass("text-[#bcbcbc]");
 
   if (genreInputVal === "28") {
-    // action done
+    // action
     $("#body").addClass(
       "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
     );
-
-    //adventure done
+    //adventure
   } else if (genreInputVal === "12") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]"
     );
-    //comedy done
+    //comedy
   } else if (genreInputVal === "35") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
     );
-    //horror done
+    //horror
   } else if (genreInputVal === "27") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
     );
-    // romance done
+    // romance
   } else if (genreInputVal === "10749") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
     );
+    // drama
   } else if (genreInputVal === "18") {
-    // drama done
     $("#body").addClass(
       "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
     );
-    //scifi done
+    //scif
   } else if (genreInputVal === "878") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
     );
-    $(".bubble").addClass("bg-orange-200 text-orange-800");
-    //doc done
+    //doc
   } else if (genreInputVal === "99") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
     );
-    //mystery done
+    //mystery
   } else if (genreInputVal === "9648") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
     );
+    //action & adventure
   } else if (genreInputVal === "10759") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
     );
-    //animation done
+    //animation
   } else if (genreInputVal === "35") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
     );
-    //crime done
+    //crime
   } else if (genreInputVal === "80") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
@@ -363,42 +378,42 @@ function renderColorScheme() {
     $("#body").addClass(
       "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
     );
+    // kids
   } else if (genreInputVal === "10762") {
-    // kids done
     $("#body").addClass(
       "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
     );
+    // news
   } else if (genreInputVal === "10763") {
-    // news done
     $("#body").addClass(
       "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
     );
-    //reality done
+    //reality
   } else if (genreInputVal === "10764") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
     );
-    //scifi fantasy done
+    //scifi fantasy
   } else if (genreInputVal === "10765") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
     );
-    //soap done
+    //soap
   } else if (genreInputVal === "10766") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
     );
-    //talk dnoe
+    //talk
   } else if (genreInputVal === "10767") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
     );
+    // war & politcs
   } else if (genreInputVal === "10768") {
-    // war & politcs done
     $("#body").addClass(
       "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
     );
-    // western done
+    // western
   } else if (genreInputVal === "37") {
     $("#body").addClass(
       "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]"

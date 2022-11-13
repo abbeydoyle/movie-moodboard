@@ -19,19 +19,16 @@
       <br>
       <br>
       <br>
-      <div class="hero-body">
+      <div>
         <h1 class="text-5xl font-bold mt-0 mb-6">Movie Moodboard</h1>
         <h2 class="text-3xl font-bold mb-8">An app for finding movies!</h2>
-      </div>
-      
+      </div>  
     </header>
 
     <hr>
     <br>
    
 
-    <!-- TODO: remove column blackground colors, just for visualization -->
-    <!-- TODO: tailwind lets you set color themes, do this for form -->
     <div class="grid grid-cols-8 gap-3" id = "userSearch">
       <!-- This is our search column -->
       <div class="bg-inherit  col-span-2 py-10 px-5">
@@ -40,6 +37,7 @@
         <br />
         <form>
           <div>
+            <!-- media type input -->
             <label
               for="Media"
               class="block mb-2 text-xl font-semibold"
@@ -57,11 +55,13 @@
           </div>
           <br />
           <div>
+            <!-- drop down displayed based on first media input chosen -->
             <label
               for="Media"
               class="block mb-2 text-xl font-semibold"
               >Choose your genre:</label
             >
+            <!-- movie genre input -->
             <select
               name="genres-option"
               id="genres-movie"
@@ -79,6 +79,7 @@
               <option value="9648">Mystery</option>
             </select>
 
+            <!-- tv genre input -->
             <select
               name="genres-option"
               id="genres-tv"
@@ -105,6 +106,7 @@
           </div>
           <br />
           <div>
+            <!-- submit button -->
             <button
               id="search-button"
               class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-[#6e1722] to-[#bcbcbc] group-hover:from-[#6e1722] group-hover:to-[#bcbcbc] hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
@@ -122,13 +124,14 @@
         <div>
           <h3 class="font-bold text-3xl">Search History:</h3>
           <br />
-          <!-- TODO: populate search history -->
+          <!-- search history block -->
           <div class = "historyBlock text-xl font-semibold">
             <ul id = "searchBlock" class = "list-none">
  
             </ul>
           </div>
           <br>
+          <!-- clear search history button -->
           <button
               id="clearButton"
               class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-[#6e1722] to-[#bcbcbc] group-hover:from-[#6e1722] group-hover:to-[#bcbcbc] hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
@@ -143,6 +146,7 @@
       </div>
 
       <!-- This will be our card column -->
+      <!-- cards populated in js -->
       <div class="bg-inherit col-span-6 py-10 px-5">
         <div class="antialiased bg-inherit text-gray-900 font-sans p-6">
           <div class="container mx-auto">
@@ -160,6 +164,7 @@
     <footer class="text-center py-20 px-6">
       <div class="grid grid-cols-4 gap-3">
         <div class="grid grid-cols-1">
+          <!-- mat footer column, github link -->
           <h5 class="font-bold text-xl">Mathew Chandler</h5>
           <br />
           <div class="flex justify-center">
@@ -187,6 +192,7 @@
           </div>
         </div>
 
+        <!-- abbey footer column, github link -->
         <div class="grid grid-cols-1">
           <h5 class="font-bold text-xl">Abigail Doyle</h5>
           <br />
@@ -215,6 +221,7 @@
           </div>
         </div>
 
+        <!-- parker footer column, github link -->
         <div class="grid grid-cols-1">
           <h5 class="font-bold text-xl">Parker Matthis</h5>
           <br />
@@ -243,6 +250,7 @@
           </div>
         </div>
 
+        <!-- eric footer column, github link -->
         <div class="grid grid-cols-1">
           <h5 class="font-bold text-xl">Eric Wall</h5>
           <br />
