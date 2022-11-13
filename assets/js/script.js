@@ -30,9 +30,10 @@ async function searchApi(mediaInputVal, genreInputVal) {
     genreSearch = await fetch(requestUrl);
     var genreSearchData = await genreSearch.json();
     searchResults = genreSearchData.results;
-    // console.log(searchResults);
     $(".showCard").remove();
+
     populateCards();
+
     if (mediaInputVal === "movie") {
       var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
       for (var i = 0; i < searchResults.length; i++) {
@@ -41,15 +42,33 @@ async function searchApi(mediaInputVal, genreInputVal) {
         );
         var ratingSearchData = await ratingSearch.json();
 
-        // console.log(ratingSearchData);
         searchResults[i].imdbRating = ratingSearchData.imdbRating;
 
         $(".search-rating").each(function (k) {
-          $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
-          $(this).addClass("visible").removeClass("invisible");
+          if (searchResults[k].imdbRating) {
+            $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
+          } else {
+            $(this).text("IMDB Rating: N/A");
+          }
+        });
+
+        $(".search-release").each(function (k) {
+          if (!searchResults[k].release_date) {
+            $(this).text("Release Date: N/A");
+          }
         });
       }
     }
+
+    $(".search-image").each(function (k) {
+      if (searchResults[k].backdrop_path == null) {
+        $(this).attr(
+          "src",
+          "https://image.tmdb.org/t/p/original/" + searchResults[k].poster_path
+        );
+      }
+    });
+
     // Resets the searchApi input variables and array after the cards are populated so the user can search again
     mediaInputVal = "";
     genreInputVal = "";
@@ -156,7 +175,6 @@ function handleSearch(event) {
 
   renderColorScheme();
 
-
   // Resets the dropdown after the submit button is clicked
   mediaTypeEl.value = "";
   genreListMovieEl.value = "";
@@ -216,7 +234,7 @@ function renderSearchHistory() {
 
   if (mediaInputVal === "movie") {
     mediaInputName = "Movie";
-  } else if (mediaInputVal === "tv"){
+  } else if (mediaInputVal === "tv") {
     mediaInputName = "TV Show";
   }
 
@@ -225,18 +243,19 @@ function renderSearchHistory() {
 
   searches.push(searchHistory);
   localStorage.setItem("searches", JSON.stringify(searches));
-  // TODO: mat 
+  // TODO: mat
   retrieveLocalStorage();
   populateSearchList();
-
 }
 
-clearButtonEl.addEventListener('click', function () {
-  localStorage.clear();
-  location.reload();
-}, false);
-
-
+clearButtonEl.addEventListener(
+  "click",
+  function () {
+    localStorage.clear();
+    location.reload();
+  },
+  false
+);
 
 function populateSearchList() {
   var searchHistoryList = document.getElementById("searchBlock");
