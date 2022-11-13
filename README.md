@@ -1,7 +1,12 @@
-# movie-moodboard
-Create movie recommendations based on user input
+# Movie Moodboard
+A site to create movie recommendations from user input
 
 ## Description
+
+This project uses html, css, javascript, two third-party APIs to create movie and tv show recommendations based on user input. The first drop down allows the user to select a media type: movie or tv show. The second genre drop down is dependent on this first choice, as movies and tv shows have different genre categories. Submitting these choices saves the search history and populates the page with twenty recommendations and a custom color scheme. 
+
+This project allowed four contributors to in turn test the pair programming model, work in branches, and merge each individual coding style into the larger collaboration project. Further, it solidified the working knowledge of html, css elements, javascript, third-party APIs, and local storage. This project was styled using Tailwind CSS, which was learned entirely throughout the duration of this project. 
+
 
 <!-- TODO: write it -->
 
@@ -118,7 +123,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ![badmath](https://img.shields.io/github/license/abbeydoyle/movie-moodboard?color=pink&style=plastic)
 
-![badmath](https://img.shields.io/github/commits-since/abbeydoyle/movie-moodboard/51eb263/main?color=pink&style=plastic)
+![badmath](https://img.shields.io/github/commits-since/abbeydoyle/movie-moodboard/7110f63/development?color=pink&style=plastic)
 
 ![badmath](https://img.shields.io/github/last-commit/abbeydoyle/movie-moodboard?color=pink&style=plastic)
 
@@ -135,9 +140,14 @@ This page features:
 
 - Local storage
 - Responsive webpage
-- User input city searches
-
-<!-- TODO: add more -->
+- Sticky user input sidebar
+- User input dropdowns for media type and genre
+- Opening image that is replaced by media recommendations after the user input form is submitted
+- Card sizing that is responsive to the fetched API data
+- Clear search history button
+- Color schemes that are responsive to genre selection
+- Footer with the Github portfolios of each member linked
+- IMDB ratings, release dates, movie titles, and summaries
 
 
 <!-- If your project has a lot of features, list them here. -->
@@ -148,8 +158,11 @@ If you created an application or package and would like other developers to cont
 
 ## Tests
 
+- Select different genres and watch the color scheme change according to your input!
+- Watch the input sidebar stick at a fixed position as you scroll through your move/tv show recommendation
+- Click on the Github links to be redirected to a contributor's Github portfolio in a new tab
+- After your searches, use the Clear Search History button and the page will refresh and local storage will be cleared.
 
-<!-- TODO: write -->
 
 
 <!-- Go the extra mile and write tests for your application. Then provide examples on how to run them here. -->

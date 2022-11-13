@@ -93,16 +93,16 @@ function populateCards() {
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
               src="https://image.tmdb.org/t/p/original/${searchResults[i].backdrop_path}"
-              alt=""
+              alt="Movie poster image"
             />
           </div>
           <div class="p-4 movieCard">
             <span
-              class="search-release inline-block px-2 py-1 bg-orange-200 text-orange-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
+              class="search-release inline-block px-2 py-1 bg-red-200 text-red-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].release_date}</span
             >
             <span
-              class="search-rating inline-block px-2 py-1 bg-orange-200 text-orange-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
+              class="search-rating inline-block px-2 py-1 bg-red-200 text-red-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
               >Tomato Rating</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
@@ -128,13 +128,13 @@ function populateCards() {
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
               src="https://image.tmdb.org/t/p/original/${searchResults[i].backdrop_path}"
-              alt=""
+              alt="TV Show poster image"
               
             />
           </div>
           <div class="p-4 movieCard">
             <span
-              class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              class="search-release inline-block px-2 py-1 leading-none bg-red-200 text-red-800 rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].first_air_date}</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
@@ -206,7 +206,7 @@ function renderSearchHistory() {
     genreInputName = "Mystery";
   } else if (genreInputVal === "10759") {
     genreInputName = "Action & Adventure";
-  } else if (genreInputVal === "35") {
+  } else if (genreInputVal === "16") {
     genreInputName = "Animation";
   } else if (genreInputVal === "80") {
     genreInputName = "Crime";
