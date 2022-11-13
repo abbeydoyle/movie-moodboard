@@ -231,15 +231,6 @@ function renderSearchHistory() {
 
 }
 
-// clearButtonEl.addEventListener("click", clearSearchHistory());
-
-// function clearSearchHistory(event) {
-//   event.preventDefault();
-//   // Clear localStorage items 
-//   localStorage.clear();
-//   location.reload();
-// }
-
 clearButtonEl.addEventListener('click', function () {
   localStorage.clear();
   location.reload();
@@ -395,4 +386,3 @@ function renderColorScheme() {
     );
   }
 }
-//
