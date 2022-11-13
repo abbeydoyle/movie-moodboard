@@ -1,12 +1,20 @@
 var searchButtonEl = document.querySelector("#search-button");
+var clearButtonEl = document.querySelector("#clearButton");
 var mediaTypeEl = document.querySelector("#mv-tv");
 var mediaInputVal = "";
 var genreListMovieEl = document.querySelector("#genres-movie");
 var genreListTvEl = document.querySelector("#genres-tv");
 var genreInputVal = "";
-
+var searches = [];
+var searchHistory;
 var searchResults = [];
 var ratingResults = [];
+
+// TODO: mat
+$(document).ready(function () {
+  retrieveLocalStorage();
+  populateSearchList();
+});
 
 async function searchApi(mediaInputVal, genreInputVal) {
   try {
@@ -22,9 +30,10 @@ async function searchApi(mediaInputVal, genreInputVal) {
     genreSearch = await fetch(requestUrl);
     var genreSearchData = await genreSearch.json();
     searchResults = genreSearchData.results;
-    // console.log(searchResults);
     $(".showCard").remove();
+
     populateCards();
+
     if (mediaInputVal === "movie") {
       var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
       for (var i = 0; i < searchResults.length; i++) {
@@ -33,15 +42,33 @@ async function searchApi(mediaInputVal, genreInputVal) {
         );
         var ratingSearchData = await ratingSearch.json();
 
-        // console.log(ratingSearchData);
         searchResults[i].imdbRating = ratingSearchData.imdbRating;
 
         $(".search-rating").each(function (k) {
-          $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
-          $(this).addClass("visible").removeClass("invisible");
+          if (searchResults[k].imdbRating) {
+            $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
+          } else {
+            $(this).text("IMDB Rating: N/A");
+          }
+        });
+
+        $(".search-release").each(function (k) {
+          if (!searchResults[k].release_date) {
+            $(this).text("Release Date: N/A");
+          }
         });
       }
     }
+
+    $(".search-image").each(function (k) {
+      if (searchResults[k].backdrop_path == null) {
+        $(this).attr(
+          "src",
+          "https://image.tmdb.org/t/p/original/" + searchResults[k].poster_path
+        );
+      }
+    });
+
     // Resets the searchApi input variables and array after the cards are populated so the user can search again
     mediaInputVal = "";
     genreInputVal = "";
@@ -65,17 +92,17 @@ function populateCards() {
           <div class="relative pb-48 overflow-hidden">
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
-              src="https://image.tmdb.org/t/p/original/${searchResults[i].poster_path}"
+              src="https://image.tmdb.org/t/p/original/${searchResults[i].backdrop_path}"
               alt=""
             />
           </div>
           <div class="p-4 movieCard">
             <span
-              class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              class="search-release inline-block px-2 py-1 bg-orange-200 text-orange-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].release_date}</span
             >
             <span
-              class="search-rating inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
+              class="search-rating inline-block px-2 py-1 bg-orange-200 text-orange-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
               >Tomato Rating</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
@@ -92,7 +119,7 @@ function populateCards() {
       // populates title and first air date for tv (fields are named differently than when searching movies)
     } else if (mediaInputVal === "tv") {
       var cardTemplate = function (data) {
-        return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 bg-[#bcbcbc]" id = "movieCard">
+        return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
         <a
           href=""
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
@@ -100,12 +127,12 @@ function populateCards() {
           <div class="relative pb-48 overflow-hidden">
             <img
               class="search-image absolute inset-0 h-full w-full object-cover"
-              src="https://image.tmdb.org/t/p/original/${searchResults[i].poster_path}"
+              src="https://image.tmdb.org/t/p/original/${searchResults[i].backdrop_path}"
               alt=""
               
             />
           </div>
-          <div class="p-4">
+          <div class="p-4 movieCard">
             <span
               class="search-release inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs"
               >${searchResults[i].first_air_date}</span
@@ -177,6 +204,8 @@ function renderSearchHistory() {
     genreInputName = "Documentary";
   } else if (genreInputVal === "9648") {
     genreInputName = "Mystery";
+  } else if (genreInputVal === "10759") {
+    genreInputName = "Action & Adventure";
   } else if (genreInputVal === "35") {
     genreInputName = "Animation";
   } else if (genreInputVal === "80") {
@@ -205,14 +234,45 @@ function renderSearchHistory() {
 
   if (mediaInputVal === "movie") {
     mediaInputName = "Movie";
-  } else {
+  } else if (mediaInputVal === "tv") {
     mediaInputName = "TV Show";
   }
 
   var searchHistory = genreInputName + " " + mediaInputName;
   var searchItem = searchHistory.valueOf();
 
-  $(".historyBlock").append(searchItem);
+  searches.push(searchHistory);
+  localStorage.setItem("searches", JSON.stringify(searches));
+  // TODO: mat
+  retrieveLocalStorage();
+  populateSearchList();
+}
+
+clearButtonEl.addEventListener(
+  "click",
+  function () {
+    localStorage.clear();
+    location.reload();
+  },
+  false
+);
+
+function populateSearchList() {
+  var searchHistoryList = document.getElementById("searchBlock");
+  searchHistoryList.innerHTML = "";
+  for (let i = searches.length - 1; i >= 0; i--) {
+    var searchTerm = searches[i];
+    var searchTermElement = document.createElement("li");
+    searchTermElement.setAttribute("class", "search-history-li p-2");
+
+    searchTermElement.textContent = searchTerm;
+    searchHistoryList.append(searchTermElement);
+  }
+}
+
+// TODO: mat
+function retrieveLocalStorage() {
+  searches = JSON.parse(localStorage.getItem("searches")) || [];
 }
 
 // Event listener for format dropdown to control if the movie or tv genre dropdown is shown
@@ -230,19 +290,118 @@ $("#mv-tv").change(function () {
 });
 
 function renderColorScheme() {
+  $(".movieImage").remove();
+  $("header").addClass("text-[#bcbcbc]");
+  $("#userSearch").addClass("text-[#bcbcbc]");
+  $(".historyBlock").addClass("text-[#bcbcbc]");
+  $(".movieCard").addClass("bg-[#bcbcbc] text-[#0a0d5e]");
+  $("footer").addClass("text-[#bcbcbc]");
+
   if (genreInputVal === "28") {
+    // action done
     $("#body").addClass(
       "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
     );
-    $("header").addClass("text-[#bcbcbc]");
-    $("#userSearch").addClass("text-[#bcbcbc]");
-    $(".historyBlock").addClass("text-[#bcbcbc]");
-    $(".movieCard").addClass("bg-[#bcbcbc] text-[#0a0d5e]");
-    $("footer").addClass("text-[#bcbcbc]");
-    // $("p").addClass("text-[#bcbcbc]")
-    // $(".searchSummary").addClass("text-blue-700")
-    // $(".searchTitle").addClass("text-blue-700")
+
+    //adventure done
   } else if (genreInputVal === "12") {
-    genreInputName = "Adventure";
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]"
+    );
+    //comedy done
+  } else if (genreInputVal === "35") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
+    //horror done
+  } else if (genreInputVal === "27") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
+    // romance done
+  } else if (genreInputVal === "10749") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
+  } else if (genreInputVal === "18") {
+    // drama done
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
+    //scifi done
+  } else if (genreInputVal === "878") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
+    );
+    $(".bubble").addClass("bg-orange-200 text-orange-800");
+    //doc done
+  } else if (genreInputVal === "99") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
+    );
+    //mystery done
+  } else if (genreInputVal === "9648") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
+  } else if (genreInputVal === "10759") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
+    //animation done
+  } else if (genreInputVal === "35") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
+    //crime done
+  } else if (genreInputVal === "80") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#5d0510] via-[#2a0b0a] to-[#170303]"
+    );
+    //family done
+  } else if (genreInputVal === "10751") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
+  } else if (genreInputVal === "10762") {
+    // kids done
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
+  } else if (genreInputVal === "10763") {
+    // news done
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
+    //reality done
+  } else if (genreInputVal === "10764") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
+    //scifi fantasy done
+  } else if (genreInputVal === "10765") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#0c0f6e] via-[#292fd4] to-[#7a7a7a]"
+    );
+    //soap done
+  } else if (genreInputVal === "10766") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#6e176c] via-[#760936] to-[#6e1722]"
+    );
+    //talk dnoe
+  } else if (genreInputVal === "10767") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#a11212] via-[#b55b00] to-[#b9af21]"
+    );
+  } else if (genreInputVal === "10768") {
+    // war & politcs done
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#721010] via-[#700024] to-[#0a0d5e]"
+    );
+    // western done
+  } else if (genreInputVal === "37") {
+    $("#body").addClass(
+      "bg-gradient-to-br from-[#042900] via-[#434400] to-[#674e02]"
+    );
   }
 }
