@@ -246,5 +246,3 @@ function renderColorScheme() {
     genreInputName = "Adventure";
   }
 }
-
-//
