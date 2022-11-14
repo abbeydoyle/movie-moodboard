@@ -21,8 +21,6 @@ $(document).ready(function () {
 async function searchApi(mediaInputVal, genreInputVal) {
   try {
     var genreSearch = "";
-    // console.log(mediaInputVal);
-    // console.log(genreInputVal);
     const requestUrl =
       "https://api.themoviedb.org/3/discover/" +
       mediaInputVal +
@@ -37,17 +35,16 @@ async function searchApi(mediaInputVal, genreInputVal) {
     // display card function with fetched data
     populateCards();
 
-    // use second api for movie data
+    // use second api for IMDB movie ratings
     if (mediaInputVal === "movie") {
-      var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
+      var ratingUrl = "https://www.omdbapi.com/?apikey=3db2dcc5&t=";
       for (var i = 0; i < searchResults.length; i++) {
-        const ratingSearch = await fetch(
-          ratingUrl + searchResults[i].original_title
-        );
+        const ratingSearch = await fetch(ratingUrl + searchResults[i].title);
         var ratingSearchData = await ratingSearch.json();
 
         searchResults[i].imdbRating = ratingSearchData.imdbRating;
 
+        // shows N/A for IMDB rating if the value isn't available in the API request
         $(".search-rating").each(function (k) {
           if (searchResults[k].imdbRating) {
             $(this).text("IMDB Rating: " + searchResults[k].imdbRating);
@@ -56,6 +53,7 @@ async function searchApi(mediaInputVal, genreInputVal) {
           }
         });
 
+        // shows N/A for the release date if the value isn't availble in the API request
         $(".search-release").each(function (k) {
           if (!searchResults[k].release_date) {
             $(this).text("Release Date: N/A");
@@ -64,7 +62,7 @@ async function searchApi(mediaInputVal, genreInputVal) {
       }
     }
 
-    // poster image fetch
+    // uses the poster path image if the backdrop path image isn't available in the API request
     $(".search-image").each(function (k) {
       if (searchResults[k].backdrop_path == null) {
         $(this).attr(
@@ -84,15 +82,14 @@ async function searchApi(mediaInputVal, genreInputVal) {
   }
 }
 
-//populate cards with fetched data using a varred html tailwind card template on loop 
+//populate cards with fetched data using a varred html tailwind card template on loop
 function populateCards() {
   for (var i = 0; i < searchResults.length; i++) {
     //populates title and release date for movies
     if (mediaInputVal === "movie") {
       var cardTemplate = function (data) {
         return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-        <a
-          href=""
+        <div
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
         >
           <div class="relative pb-48 overflow-hidden">
@@ -109,16 +106,16 @@ function populateCards() {
             >
             <span
               class="search-rating inline-block px-2 py-1 bg-red-200 text-red-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
-              >Tomato Rating</span
+              ></span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
-              ${searchResults[i].original_title}
+              ${searchResults[i].title}
             </h2>
             <p class="search-summary text-sm">
             ${searchResults[i].overview}
             </p>
           </div>
-        </a>
+        </div>
       </div>`;
       };
 
@@ -126,8 +123,7 @@ function populateCards() {
     } else if (mediaInputVal === "tv") {
       var cardTemplate = function (data) {
         return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-        <a
-          href=""
+        <div
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
         >
           <div class="relative pb-48 overflow-hidden">
@@ -144,13 +140,13 @@ function populateCards() {
               >${searchResults[i].first_air_date}</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
-              ${searchResults[i].original_name}
+              ${searchResults[i].name}
             </h2>
             <p class="search-summary text-sm">
             ${searchResults[i].overview}
             </p>
           </div>
-        </a>
+        </div>
       </div>`;
       };
     }
@@ -162,19 +158,14 @@ function populateCards() {
 // Event listener search button
 function handleSearch(event) {
   event.preventDefault();
-  // console.log("Search Button Clicked!");
   mediaInputVal = mediaTypeEl.value;
-  // console.log("mediaInputVal: " + mediaInputVal);
   if (mediaInputVal === "movie") {
     genreInputVal = genreListMovieEl.value;
   } else if (mediaInputVal === "tv") {
     genreInputVal = genreListTvEl.value;
   } else {
-    // console.log("EXIT");
     return;
   }
-
-  // console.log("genreInputVal: " + genreInputVal);
 
   searchApi(mediaInputVal, genreInputVal);
 
@@ -188,6 +179,7 @@ function handleSearch(event) {
   genreListTvEl.value = "";
 }
 
+// Handle search function occurs when the search button is clicked
 searchButtonEl.addEventListener("click", handleSearch);
 
 // display search history based on user input
@@ -253,7 +245,6 @@ function renderSearchHistory() {
 
   searches.push(searchHistory);
   localStorage.setItem("searches", JSON.stringify(searches));
-  // TODO: mat
   retrieveLocalStorage();
   populateSearchList();
 }
@@ -300,7 +291,6 @@ $("#mv-tv").change(function () {
     return;
   }
 });
-
 
 // creates custom color scheme based off genre input using tailwind classes
 function renderColorScheme() {
