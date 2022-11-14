@@ -103,7 +103,7 @@ function populateCards() {
             >
             <span
               class="search-rating inline-block px-2 py-1 bg-orange-200 text-orange-800 leading-none rounded-full font-semibold uppercase tracking-wide text-xs"
-              >Tomato Rating</span
+              ></span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
               ${searchResults[i].title}
