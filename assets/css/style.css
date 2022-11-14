@@ -83,16 +83,18 @@ hr {
 }
 
 
-@media screen and (max-width: 992px) {
-   
-    }
-    
-    /* Large smartphones - navbar changes color */
+      /* media queries largely done in tailwind */
+    /* Large smartphones*/
     @media screen and (max-width: 768px) {
-    
+    .movieImage {
+            display:none;
     }
-    
-    /* Small smartphones - image placeholders change color */
-    @media screen and (max-width: 576px) {
 
-    }
+}
+    
+    /* Small smartphones */
+    @media screen and (max-width: 576px) {
+      .movieImage {
+            display:none;
+      }
+}
