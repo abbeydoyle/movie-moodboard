@@ -14,125 +14,118 @@
     <title>Movie Moodboard</title>
   </head>
 
-  <body id = "body">
+  <body id="body">
     <header class="text-center text-[#6e1722] py-5">
-      <br>
-      <br>
-      <br>
+      <br />
+      <br />
+      <br />
       <div>
         <h1 class="text-5xl font-bold mt-0 mb-6">Movie Moodboard</h1>
         <h2 class="text-3xl font-bold mb-8">An app for finding movies!</h2>
-      </div>  
+      </div>
     </header>
 
-    <hr>
-    <br>
-   
+    <hr />
+    <br />
 
-    <div class="grid grid-cols-8 gap-3" id = "userSearch">
+    <div class="grid grid-cols-8 gap-3" id="userSearch">
       <!-- This is our search column -->
-      <div class="bg-inherit  col-span-2 py-10 px-5">
-        <aside class ="sticky top-[150px] pt-20">
-        <h3 class="font-bold text-3xl">Choose your format:</h3>
-        <br />
-        <form>
-          <div>
-            <!-- media type input -->
-            <label
-              for="Media"
-              class="block mb-2 text-xl font-semibold"
-              >TV Show or Movie:</label
-            >
-            <select
-              name="media-type"
-              id="mv-tv"
-              class="border text-lg rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="" disabled selected hidden>Format</option>
-              <option value="movie">Movie</option>
-              <option value="tv">TV Show</option>
-            </select>
-          </div>
+      <div class="bg-inherit col-span-2 py-10 px-5">
+        <aside class="sticky top-[150px] pt-20">
+          <h3 class="font-bold text-3xl">Choose your format:</h3>
           <br />
-          <div>
-            <!-- drop down displayed based on first media input chosen -->
-            <label
-              for="Media"
-              class="block mb-2 text-xl font-semibold"
-              >Choose your genre:</label
-            >
-            <!-- movie genre input -->
-            <select
-              name="genres-option"
-              id="genres-movie"
-              class="genres block border text-lg rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="" disabled selected hidden>Genre</option>
-              <option value="28">Action</option>
-              <option value="12">Adventure</option>
-              <option value="35">Comedy</option>
-              <option value="27">Horror</option>
-              <option value="10749">Romance</option>
-              <option value="18">Drama</option>
-              <option value="878">Sci-Fi</option>
-              <option value="99">Documentary</option>
-              <option value="9648">Mystery</option>
-            </select>
-
-            <!-- tv genre input -->
-            <select
-              name="genres-option"
-              id="genres-tv"
-              class="genres hidden border text-lg rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="" disabled selected hidden>Genre</option>
-              <option value="10759">Action & Adventure</option>
-              <option value="16">Animation</option>
-              <option value="35">Comedy</option>
-              <option value="80">Crime</option>
-              <option value="99">Documentary</option>
-              <option value="18">Drama</option>
-              <option value="10751">Family</option>
-              <option value="10762">Kids</option>
-              <option value="9648">Mystery</option>
-              <option value="10763">News</option>
-              <option value="10764">Reality</option>
-              <option value="10765">Sci-Fi & Fantasy</option>
-              <option value="10766">Soap</option>
-              <option value="10767">Talk Show</option>
-              <option value="10768">War & Politics</option>
-              <option value="37">Western</option>
-            </select>
-          </div>
-          <br />
-          <div>
-            <!-- submit button -->
-            <button
-              id="search-button"
-              class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-[#6e1722] to-[#bcbcbc] group-hover:from-[#6e1722] group-hover:to-[#bcbcbc] hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
-            >
-              <span
-                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-black rounded-md group-hover:bg-opacity-0"
+          <form>
+            <div>
+              <!-- media type input -->
+              <label for="Media" class="block mb-2 text-xl font-semibold"
+                >TV Show or Movie:</label
               >
-                Submit
-              </span>
-            </button>
-          </div>
-        </form>
-        <br />
+              <select
+                name="media-type"
+                id="mv-tv"
+                class="border text-lg rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="" disabled selected hidden>Format</option>
+                <option value="movie">Movie</option>
+                <option value="tv">TV Show</option>
+              </select>
+            </div>
+            <br />
+            <div>
+              <!-- drop down displayed based on first media input chosen -->
+              <label for="Media" class="block mb-2 text-xl font-semibold"
+                >Choose your genre:</label
+              >
+              <!-- movie genre input -->
+              <select
+                name="genres-option"
+                id="genres-movie"
+                class="genres block border text-lg rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="" disabled selected hidden>Genre</option>
+                <option value="28">Action</option>
+                <option value="12">Adventure</option>
+                <option value="35">Comedy</option>
+                <option value="27">Horror</option>
+                <option value="10749">Romance</option>
+                <option value="18">Drama</option>
+                <option value="878">Sci-Fi</option>
+                <option value="99">Documentary</option>
+                <option value="9648">Mystery</option>
+              </select>
 
-        <div>
-          <h3 class="font-bold text-3xl">Search History:</h3>
+              <!-- tv genre input -->
+              <select
+                name="genres-option"
+                id="genres-tv"
+                class="genres hidden border text-lg rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="" disabled selected hidden>Genre</option>
+                <option value="10759">Action & Adventure</option>
+                <option value="16">Animation</option>
+                <option value="35">Comedy</option>
+                <option value="80">Crime</option>
+                <option value="99">Documentary</option>
+                <option value="18">Drama</option>
+                <option value="10751">Family</option>
+                <option value="10762">Kids</option>
+                <option value="9648">Mystery</option>
+                <option value="10763">News</option>
+                <option value="10764">Reality</option>
+                <option value="10765">Sci-Fi & Fantasy</option>
+                <option value="10766">Soap</option>
+                <option value="10767">Talk Show</option>
+                <option value="10768">War & Politics</option>
+                <option value="37">Western</option>
+              </select>
+            </div>
+            <br />
+            <div>
+              <!-- submit button -->
+              <button
+                id="search-button"
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-[#6e1722] to-[#bcbcbc] group-hover:from-[#6e1722] group-hover:to-[#bcbcbc] hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+              >
+                <span
+                  class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-black rounded-md group-hover:bg-opacity-0"
+                >
+                  Submit
+                </span>
+              </button>
+            </div>
+          </form>
           <br />
-          <!-- search history block -->
-          <div class = "historyBlock text-xl font-semibold">
-            <ul id = "searchBlock" class = "list-none">
- 
-            </ul>
-          </div>
-          <br>
-          <!-- clear search history button -->
-          <button
+
+          <div>
+            <h3 class="font-bold text-3xl">Search History:</h3>
+            <br />
+            <!-- search history block -->
+            <div class="historyBlock text-xl font-semibold">
+              <ul id="searchBlock" class="list-none"></ul>
+            </div>
+            <br />
+            <!-- clear search history button -->
+            <button
               id="clearButton"
               class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-[#6e1722] to-[#bcbcbc] group-hover:from-[#6e1722] group-hover:to-[#bcbcbc] hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
             >
@@ -142,7 +135,8 @@
                 Clear Search History
               </span>
             </button>
-        </div>
+          </div>
+        </aside>
       </div>
 
       <!-- This will be our card column -->
@@ -150,15 +144,16 @@
       <div class="bg-inherit col-span-6 py-10 px-5">
         <div class="antialiased bg-inherit text-gray-900 font-sans p-6">
           <div class="container mx-auto">
-            <div class="flex flex-wrap -mx-4 cardcontainer" id = "movieCard">
-            </div>
-            <div class ="movieImage">
-              <img src="./assets/images/drivein.png">
+            <div
+              class="flex flex-wrap -mx-4 cardcontainer"
+              id="movieCard"
+            ></div>
+            <div class="movieImage">
+              <img src="./assets/images/drivein.png" />
             </div>
           </div>
         </div>
       </div>
-    </aside>
     </div>
 
     <footer class="text-center py-20 px-6">
@@ -168,7 +163,9 @@
           <h5 class="font-bold text-xl">Mathew Chandler</h5>
           <br />
           <div class="flex justify-center">
-            <button onclick="window.open('https://github.com/Stingxming')" target="_blank"
+            <button
+              onclick="window.open('https://github.com/Stingxming')"
+              target="_blank"
               type="button"
               class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
             >
@@ -197,7 +194,9 @@
           <h5 class="font-bold text-xl">Abigail Doyle</h5>
           <br />
           <div class="flex justify-center">
-            <button onclick="window.open('https://github.com/abbeydoyle')" target="_blank"
+            <button
+              onclick="window.open('https://github.com/abbeydoyle')"
+              target="_blank"
               type="button"
               class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
             >
@@ -223,10 +222,12 @@
 
         <!-- parker footer column, github link -->
         <div class="grid grid-cols-1">
-          <h5 class="font-bold text-xl">Parker Matthis</h5>
+          <h5 class="font-bold text-xl">Parker Mathis</h5>
           <br />
           <div class="flex justify-center">
-            <button onclick="window.open('https://github.com/markerpathis')" target="_blank"
+            <button
+              onclick="window.open('https://github.com/markerpathis')"
+              target="_blank"
               type="button"
               class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
             >
@@ -255,7 +256,9 @@
           <h5 class="font-bold text-xl">Eric Wall</h5>
           <br />
           <div class="flex justify-center">
-            <button onclick="window.open('https://github.com/walleric23')" target="_blank"
+            <button
+              onclick="window.open('https://github.com/walleric23')"
+              target="_blank"
               type="button"
               class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
             >
