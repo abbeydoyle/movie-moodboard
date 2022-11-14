@@ -32,7 +32,6 @@ This project allowed four contributors to in turn test the pair programming mode
 
 ## Installation
 
-<!-- FIXME: lets deploy this site using the specific naming convention in github so the link itself doesn't include my repo. We'll potentially be linking this in our portfolio so it shouldn't be specific to any one of us -->
 
 There is no installation required for this Movie Moodboard. Simply follow this [link](https://abbeydoyle.github.io/movie-moodboard/), open in your preferred browser, and use the search form to see the weather for a city of your choice!
 
@@ -80,19 +79,15 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 This webpage was built using UW Trilogy Bootcamp class materials as references.
 
-Advice on this project was received from the following tutors: Rene Trevino, 
-<!-- FIXME: mat add your tutor -->
-
-<!-- TODO: add contributions -->
 There are four contributors to this project. Each member along with their contributions are listed below.
 
-- Mathew Chandler:
+- Mathew Chandler: Local Storage
 
-- Abigail Doyle:
+- Abigail Doyle: Responsive Tailwind CSS styling, JS card functions
 
-- Parker Mathis:
+- Parker Mathis: Javascript, API functionality
 
-- Eric Wall:
+- Eric Wall: Card styling
 
 
 ## License
