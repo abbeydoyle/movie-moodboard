@@ -86,8 +86,7 @@ function populateCards() {
     if (mediaInputVal === "movie") {
       var cardTemplate = function (data) {
         return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-        <a
-          href=""
+        <div
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
         >
           <div class="relative pb-48 overflow-hidden">
@@ -113,7 +112,7 @@ function populateCards() {
             ${searchResults[i].overview}
             </p>
           </div>
-        </a>
+        </div>
       </div>`;
       };
 
@@ -121,8 +120,7 @@ function populateCards() {
     } else if (mediaInputVal === "tv") {
       var cardTemplate = function (data) {
         return `<div class="showCard w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-        <a
-          href=""
+        <div
           class="c-card block shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
         >
           <div class="relative pb-48 overflow-hidden">
@@ -145,7 +143,7 @@ function populateCards() {
             ${searchResults[i].overview}
             </p>
           </div>
-        </a>
+        </div>
       </div>`;
       };
     }
