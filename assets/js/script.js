@@ -30,16 +30,17 @@ async function searchApi(mediaInputVal, genreInputVal) {
     genreSearch = await fetch(requestUrl);
     var genreSearchData = await genreSearch.json();
     searchResults = genreSearchData.results;
+
+    console.log(searchResults);
+
     $(".showCard").remove();
 
     populateCards();
 
     if (mediaInputVal === "movie") {
-      var ratingUrl = "http://www.omdbapi.com/?apikey=3db2dcc5&t=";
+      var ratingUrl = "https://www.omdbapi.com/?apikey=3db2dcc5&t=";
       for (var i = 0; i < searchResults.length; i++) {
-        const ratingSearch = await fetch(
-          ratingUrl + searchResults[i].original_title
-        );
+        const ratingSearch = await fetch(ratingUrl + searchResults[i].title);
         var ratingSearchData = await ratingSearch.json();
 
         searchResults[i].imdbRating = ratingSearchData.imdbRating;
@@ -106,7 +107,7 @@ function populateCards() {
               >Tomato Rating</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
-              ${searchResults[i].original_title}
+              ${searchResults[i].title}
             </h2>
             <p class="search-summary text-sm">
             ${searchResults[i].overview}
@@ -138,7 +139,7 @@ function populateCards() {
               >${searchResults[i].first_air_date}</span
             >
             <h2 class="search-title mt-2 mb-2 font-bold">
-              ${searchResults[i].original_name}
+              ${searchResults[i].name}
             </h2>
             <p class="search-summary text-sm">
             ${searchResults[i].overview}
