@@ -1,3 +1,98 @@
-body {
-      background-color: grey;
+/* declare colors as variables */
+/* these variables will not be called, just used to visualize what will be used in Tailwind */
+:root {
+
+      /* horror crime */
+      --maroon: #5d131c;
+      --rich-red: #6e1722;
+      --mold-green: #2c3a21;
+      --burnt-orange: #9b5506;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* comedy talk family animation*/
+      --yellow: #9f961c;
+      --red: #a11212;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* action, kids, news, war politics */
+      --blue: #0a0d5e;
+      --red: #721010;
+      --black: #000000;
+      --white: #bcbcbc;
+      
+      /* adventure, western */
+      --forest-green: #042900;
+      --gold: #674e02;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* romance no */
+      --rich-red: #6e1722;
+      --light-pink: #d85ca7;
+      --dark-pink: #be1179;
+      --gold: #b18605;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* drama, soap, reality, romance */
+      --rich-red: #6e1722;
+      --purple: #6e176c; 
+      --black: #000000;
+      --white: #ffffff;    
+
+      /* scifi doc*/
+      --silver: #7a7a7a;
+      --ooze-green: #78bc6e;
+      --mold-green: #2c3a21;
+      --blue: #0c0f6e;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* documentary */
+      --blue: #101597;
+      --red: #d71515;
+      --brown: #733a01;
+      --black: #000000;
+      --white: #ffffff;
+
+      /* mystery */
+      --mold-green: #2c3a21;
+      --navy: #12175c;
+      --brown: #733a01;
+      --black: #000000;
+      --white: #ffffff;
+
+
 }
+
+/* initial styling */
+body {
+      background-color: black;
+      color: var(--rich-red)
+}
+
+.movieCard {
+      background-color: #bcbcbc;
+}
+
+hr {
+      border: 1px solid #bcbcbc;
+      border-radius: 5px;
+}
+
+
+@media screen and (max-width: 992px) {
+   
+    }
+    
+    /* Large smartphones - navbar changes color */
+    @media screen and (max-width: 768px) {
+    
+    }
+    
+    /* Small smartphones - image placeholders change color */
+    @media screen and (max-width: 576px) {
+
+    }
