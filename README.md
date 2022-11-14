@@ -58,13 +58,9 @@ There are 8 main sections of this repository:
 
 - [ReadME](https://github.com/abbeydoyle/movie-moodboard/blob/development/README.md) - This file containing an executive overview of the project
 
+<img alt="Movie Moodboard Opening Page" src="./assets/images/Movie%20Moodboard.png">
 
-
-<!-- TODO: include deployed page screenshots -->
-
-<!-- FIXME: we will have to change "development" to "main" when we merge back to main -->
-
-
+<img alt="Movie Moodboard TV Search" src="./assets/images/Movie%20Moodboard3.png" width="500" > <img alt="Movie Moodboard Movie Search" src="./assets/images/Movie%20Moodboard2.png" width="500" > 
 
 
 <!-- Provide instructions and examples for use. Include screenshots as needed.
